@@ -1,0 +1,5 @@
+If needed, I have included a txt file with the package versions I used for
+running this project. If you need to run:
+    pip install -r requirements_dev.txt
+in order to install the necessary pacakges.
+I was using python 3.8.2 and everything was running find.
