@@ -22,11 +22,12 @@ def perform_birth_death_process(path, covid_dict):
     start = datetime.date(2020, 1, 16);
     today = datetime.date(2020, 5, 4);
     difference = today - start;
+    print('');
     for city in reversed(path):
         if city in covid_dict.keys():
-            lam = .05;
-            mu = .78;
             print('Expected number of covid cases in', city, 'is', covid_dict[city][0]);
+        else:
+            print('No information found for', city);
             
 
 # Retrieve user file
