@@ -2,26 +2,18 @@
 from tkinter import *;
 from tkinter.filedialog import askopenfilename;
 from routemap import RouteMap;
-import datetime;
-import math;
 
 def start_process():
-    try:
-        file_name = get_file();
-        # Create custom object to handle finding shortest path
-        route_map = RouteMap(file_name);
-        source = get_node(route_map, 'Enter name of city we\'re starting from: ');
-        sink = get_node(route_map, 'Enter name of city we\'re ending at: ');
-        path, distances = route_map.search(source, sink);
-        covid_dict = load_covid_data();
-        perform_birth_death_process(path, covid_dict);
-    except FileNotFoundError as e:
-        print("You must select an excel file to import cities");
+    file_name = get_file();
+    # Create custom object to handle finding shortest path
+    route_map = RouteMap(file_name);
+    source = get_node(route_map, 'Enter name of city we\'re starting from: ');
+    sink = get_node(route_map, 'Enter name of city we\'re ending at: ');
+    path, distances = route_map.search(source, sink);
+    covid_dict = load_covid_data();
+    perform_birth_death_process(path, covid_dict);
 
 def perform_birth_death_process(path, covid_dict):
-    start = datetime.date(2020, 1, 16);
-    today = datetime.date(2020, 5, 4);
-    difference = today - start;
     print('');
     for city in reversed(path):
         if city in covid_dict.keys():
@@ -35,7 +27,6 @@ def get_file():
     # Open file in read mode
     # specify exel file
     return './assets/Driving Distances Between Missouri Towns.xlsx';
-    #return askopenfilename(title = 'Select Path To City Excel File', filetypes = (('', '*.xlsx'),));
 
 # Retrieve covid file
 def load_covid_data():
